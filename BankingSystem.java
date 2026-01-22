@@ -10,10 +10,6 @@ class MonotonicCounter {
         return value.incrementAndGet();
     }
 }
-class AccountIDPadding{
-
-}
-
 class InsufficientBalanceException extends RuntimeException{
     public InsufficientBalanceException(String message){
         super(message);
