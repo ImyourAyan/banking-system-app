@@ -10,6 +10,9 @@ class MonotonicCounter {
         return value.incrementAndGet();
     }
 }
+class AccountIDPadding{
+
+}
 
 class InsufficientBalanceException extends RuntimeException{
     public InsufficientBalanceException(String message){
@@ -57,13 +60,16 @@ class Account{
 }
 
 public class BankingSystem {
+    private static MonotonicCounter counter = new MonotonicCounter();
+    private static String accountIDGenereate(){
+        return "ACC" + String.format("%09d", counter.next());
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to the Banking System!");
         // Additional banking system logic would go here
         Map<String,Account> accountsList = new HashMap<>();
         Scanner sc = new Scanner(System.in);
         String accountID = null; Account acc = null; double amount;
-        MonotonicCounter counter = new MonotonicCounter();
         while(true){
             System.out.println("1.Deposit\n2.Withdraw\n3.Check Balance\n4.Create a Account\n5.Exit");
             int input = sc.nextInt();
@@ -115,9 +121,9 @@ public class BankingSystem {
                     }
                     break;
                 case 4:
-                    System.out.println("Your Account ID:");
-                    accountID = "ACC" + Long.toString(counter.next());
-                    System.out.println(accountID); // 1
+                    System.out.println("Creating a new account...");
+                    accountID = accountIDGenereate();
+                    System.out.println("Your Account ID: " + accountID); // 1
                     System.out.println("Enter Account Holder Name:");
                     String accountHolderName = sc.nextLine();
                     System.out.println();
