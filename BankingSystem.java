@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -63,7 +63,7 @@ public class BankingSystem {
     public static void main(String[] args) {
         System.out.println("Welcome to the Banking System!");
         // Additional banking system logic would go here
-        Map<String,Account> accountsList = new HashMap<>();
+        Map<String,Account> accountsList = new LinkedHashMap<>();
         Scanner sc = new Scanner(System.in);
         String accountID = null; Account acc = null; double amount;
         while(true){
