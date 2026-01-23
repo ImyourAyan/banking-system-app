@@ -1,4 +1,4 @@
-public class Adminpanel {
+public class AdminPanel {
     public static void main(String[] args) {
         System.out.println("Admin Panel Accessed");
         // Additional admin functionalities can be implemented here
