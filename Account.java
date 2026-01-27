@@ -1,10 +1,4 @@
 
-class InsufficientBalanceException extends RuntimeException{
-    public InsufficientBalanceException(String message){
-        super(message);
-    }
-}
-
 public class Account{
     private String accountHolderName;
     private double balance;
