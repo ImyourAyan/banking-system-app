@@ -4,10 +4,6 @@ import java.util.Map;
 
 
 public class BankingSystem {
-    private static MonotonicCounter counter = new MonotonicCounter();
-    private static String accountIDGenereate(){
-        return "ACC" + String.format("%09d", counter.next());
-    }
     public static void main(String[] args) {
         System.out.println("Welcome to the Banking System!");
         // Additional banking system logic would go here
@@ -66,7 +62,7 @@ public class BankingSystem {
                     break;
                 case 4:
                     System.out.println("Creating a new account...");
-                    accountID = accountIDGenereate();
+                    accountID = BankingService.getAccountID();
                     System.out.println("Your Account ID: " + accountID); // 1
                     System.out.println("Enter Account Holder Name:");
                     String accountHolderName = sc.nextLine();
