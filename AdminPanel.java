@@ -8,7 +8,7 @@ public class AdminPanel {
         
         switch (input) {
             case 1:
-                BankingSystem app = new BankingSystem();
+                // BankingSystem app = new BankingSystem();
                 ;
                 System.out.println("Total users number: ");
                 break;
