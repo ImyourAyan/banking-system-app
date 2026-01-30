@@ -21,14 +21,7 @@ public class BankingSystem {
                     System.out.println("Enter amount to deposit:");
                     amount = sc.nextDouble();
                     // Account.deposit(amount);
-                    acc = accountsList.get(accountID);
-                    if(acc != null){
-                    acc.deposit(amount);
-                    System.out.println("Deposit successful to account: " + accountID);
-                    }
-                    else{
-                        System.out.println("Account not found.");
-                    }
+                    BankingService.deposited(accountID, amount);
                     break;
                     
                 case 2:
