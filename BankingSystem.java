@@ -1,15 +1,14 @@
 import java.util.Scanner;
-import java.util.LinkedHashMap;
-import java.util.Map;
+
 
 
 public class BankingSystem {
     public static void main(String[] args) {
         System.out.println("Welcome to the Banking System!");
         // Additional banking system logic would go here
-        Map<String,Account> accountsList = new LinkedHashMap<>();
         Scanner sc = new Scanner(System.in);
-        String accountID = null; Account acc = null; double amount;
+        BankingService bankingService = new BankingService();
+        String accountID = null; double amount;
         while(true){
             System.out.println("1.Deposit\n2.Withdraw\n3.Check Balance\n4.Create a Account\n5.Exit");
             int input = sc.nextInt();
@@ -21,7 +20,7 @@ public class BankingSystem {
                     System.out.println("Enter amount to deposit:");
                     amount = sc.nextDouble();
                     // Account.deposit(amount);
-                    BankingService.deposited(accountID, amount);
+                    bankingService.deposited(accountID, amount);
                     break;
                     
                 case 2:
@@ -29,29 +28,12 @@ public class BankingSystem {
                     accountID = sc.next();
                     System.out.println("Enter amount to withdraw:");
                     amount = sc.nextDouble();
-                    acc = accountsList.get(accountID);
-                    if(acc != null){
-                        try {
-                            acc.withdraw(amount);
-                            System.out.println("Withdrawal successful from account: " + accountID);  
-                    } catch (InsufficientBalanceException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    }
-                    else{
-                        System.out.println("Account not found.");
-                    }
+                    bankingService.withdrawn(accountID, amount);
                     break;
                 case 3:
                     System.out.println("Enter Account ID:");
                     accountID = sc.next();
-                    acc = accountsList.get(accountID);
-                    if(acc != null){
-                    System.out.println("Current Balance: " + acc.getBalance());
-                    }
-                    else{
-                        System.out.println("Account not found.");
-                    }
+                    bankingService.checkbalance(accountID);
                     break;
                 case 4:
                     System.out.println("Creating a new account...");
@@ -62,10 +44,7 @@ public class BankingSystem {
                     System.out.println();
                     System.out.println("Enter Initial Balance:");
                     double initialBalance = sc.nextDouble();
-                    Account newAccount = new Account(accountHolderName, initialBalance, Account.AccountStatus.ACTIVE);
-                    accountsList.put(accountID,newAccount);
-                    System.out.println("New account created successfully!");
-                    
+                    bankingService.createAccount( accountHolderName, initialBalance, Account.AccountStatus.ACTIVE);
                     break;
                 case 5:
                     System.out.println("Exiting the Banking System. Goodbye!");
