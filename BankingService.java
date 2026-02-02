@@ -1,6 +1,6 @@
 import java.util.Map;
 import java.util.HashMap;
-// import java.util.stream.Collector;
+import java.util.stream.Collector;
 
 public class BankingService {
     private Map<String,Account> accountsList = new HashMap<>();
