@@ -1,10 +1,10 @@
 import java.util.Map;
 import java.util.HashMap;
-// import java.util.stream.Collector;
+
 
 public class BankingService {
     private Map<String,Account> accountsList = new HashMap<>();
-    String accountID = null; Account acc = null; double amount, balance;
+    String accountID = null; Account acc = null; double amount; long count;
     private static MonotonicCounter counter = new MonotonicCounter();
     private static String accountIDGenerate(){
         return "ACC" + String.format("%09d", counter.next());
@@ -12,7 +12,7 @@ public class BankingService {
     public static String getAccountID(){
         return accountIDGenerate();
     }
-    public double deposited(String accountID, double amount){ 
+    public double deposited(String accountID, double amount){
         acc = accountsList.get(accountID);
         if(acc != null){
             acc.deposit(amount);
@@ -21,7 +21,7 @@ public class BankingService {
         else{
             System.out.println("Account not found.");
         }
-        return balance;
+        return acc.getBalance();
     }
     public double withdrawn(String accountID, double amount){
         acc = accountsList.get(accountID);
@@ -36,7 +36,7 @@ public class BankingService {
         else{
             System.out.println("Account not found.");
         } 
-        return balance;
+        return acc.getBalance();
     }
     public double checkbalance(String accountID){
         acc = accountsList.get(accountID);
@@ -46,12 +46,19 @@ public class BankingService {
             else{
                 System.out.println("Account not found.");
             }
-            return balance;
+            return acc.getBalance();
     }
     public Map<String,Account> createAccount(String accountHolderName, double initialBalance, Account.AccountStatus status){
         Account newAccount = new Account(accountHolderName, initialBalance, status);
         accountsList.put(accountID,newAccount);
         System.out.println("New account created successfully!\n"+"Account ID: " + accountID + "\tAccount Holder: " + accountHolderName + "\tInitial Balance: " + initialBalance);
         return accountsList;
+    }
+    
+    public long activeAccountnumber(){count = accountsList.values()
+            .stream()
+            .filter(account -> account.getStatus() == Account.AccountStatus.ACTIVE)
+            .count();
+        return count;
     }
 }

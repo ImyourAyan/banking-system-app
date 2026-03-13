@@ -11,8 +11,11 @@ public class Account{
         public int getStatuscode(){
             return statuscode;
         }
+        
     }
-    
+    public AccountStatus getStatus(){
+            return status;
+        }
     public Account(String accountHolderName, double balance, AccountStatus status){
         this.accountHolderName = accountHolderName;
         this.balance = balance;
