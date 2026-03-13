@@ -16,6 +16,10 @@ public class Account{
     public AccountStatus getStatus(){
             return status;
         }
+    public String getAccountHolderName(){
+        return accountHolderName;
+    }
+        
     public Account(String accountHolderName, double balance, AccountStatus status){
         this.accountHolderName = accountHolderName;
         this.balance = balance;
@@ -38,4 +42,5 @@ public class Account{
         }
         balance -= amount;
     }
+    
 }
