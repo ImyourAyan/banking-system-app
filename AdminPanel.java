@@ -14,14 +14,14 @@ public class AdminPanel {
                 break;
             
             case 2:
-                System.out.println("Total transactions number: ");
+                System.out.println("Total inactive users number: ");
                 break;
 
             case 3:
                 System.out.println("Total active users number: ");
                 break;
             case 4:
-                System.out.println("Total inactive users number: ");
+                System.out.println("Total transactions number: ");
                 break;
 
             default:

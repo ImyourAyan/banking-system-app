@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class BankingService {
     private Map<String,Account> accountsList = new HashMap<>();
-    String accountID = null; Account acc = null; double amount; long count;
+    String accountID = null; Account acc = null; double amount = 0; long count = 0;
     private static MonotonicCounter counter = new MonotonicCounter();
     private static String accountIDGenerate(){
         return "ACC" + String.format("%09d", counter.next());
@@ -61,4 +61,17 @@ public class BankingService {
             .count();
         return count;
     }
+
+    public long closedAccountnumber(){count = accountsList.values()
+            .stream()
+            .filter(account -> account.getStatus() == Account.AccountStatus.CLOSED)
+            .count();
+        return count;
+    }
+
+    public long totalAccountnumber(){count = accountsList.size();
+        return count;
+    }
+
+    
 }
